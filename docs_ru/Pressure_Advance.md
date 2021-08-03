@@ -32,7 +32,7 @@ TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=ADVANCE START=0 FACTOR=.020
 
 Проверьте печать, а затем используйте цифровой штангенциркуль, чтобы найти высоту, которая имеет углы наилучшего качества. Если вы сомневаетесь, предпочитайте более низкий рост.
 
-![tune_pa](https://github.com/KevinOConnor/klipper/tree/master/docs/img/tune_pa.jpg)
+![tune_pa](../docs/img/tune_pa.jpg)
 
 Значение pressure_advance затем может быть рассчитано как  `pressure_advance = <start> + <measured_height> * <factor>`. (Например, `0 + 12.90 * .020` будет `.258`.)
 
