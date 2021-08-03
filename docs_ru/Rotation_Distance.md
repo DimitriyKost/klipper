@@ -5,7 +5,7 @@
 ## Obtaining rotation_distance from steps_per_mm (or step_distance)
 Получение rotation_distance из steps_per_mm (или step_distance)
 
-Дизайнеры вашего 3d-принтера изначально рассчитали `step_per_мм` с расстояния поворота. Если вы знаете steps_per_mm, то можно использовать эту общую формулу для получения исходного расстояния поворота:
+Дизайнеры вашего 3d-принтера изначально рассчитали `step_per_mm` с расстояния поворота. Если вы знаете `steps_per_mm`, то можно использовать эту общую формулу для получения исходного расстояния поворота:
 ```
 rotation_distance = <full_steps_per_rotation> * <microsteps> / <steps_per_mm>
 ```
