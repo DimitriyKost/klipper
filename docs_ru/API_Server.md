@@ -1,51 +1,39 @@
 # API server
 
-This document describes Klipper's Application Programmer Interface
-(API). This interface enables external applications to query and
-control the Klipper host software.
+Этот документ описывает интерфейс прикладного программиста Klipper (API). Этот интерфейс позволяет внешним приложениям запрашивать программное обеспечение хоста Klipper и управлять им.
 
 ## Enabling the API socket
 
-In order to use the API server, the klippy.py host software must be
-started with the `-a` parameter. For example:
+Для того чтобы использовать сервер API, klippy.py программное обеспечение хоста должно быть запущено с параметром `- a`. Например:
 ```
 ~/klippy-env/bin/python ~/klipper/klippy/klippy.py ~/printer.cfg -a /tmp/klippy_uds -l /tmp/klippy.log
 ```
 
-This causes the host software to create a Unix Domain Socket. A client
-can then open a connection on that socket and send commands to
-Klipper.
+Это приводит к тому, что программное обеспечение хоста создает доменный сокет Unix. Затем клиент может открыть соединение в этом сокете и отправить команды Клипперу.
 
 ## Request format
 
-Messages sent and received on the socket are JSON encoded strings
-terminated by an ASCII 0x03 character:
+Сообщения, отправленные и полученные в сокете, представляют собой строки в кодировке JSON, заканчивающиеся символом ASCII 0x03:
 ```
 <json_object_1><0x03><json_object_2><0x03>...
 ```
 
-Klipper contains a `scripts/whconsole.py` tool that can perform the
-above message framing. For example:
+Машинка для стрижки содержит `scripts/whconsole.py` инструмент, который может выполнить приведенное выше обрамление сообщения. Например:
 ```
 ~/klipper/scripts/whconsole.py /tmp/klippy_uds
 ```
 
-This tool can read a series of JSON commands from stdin, send them to
-Klipper, and report the results. The tool expects each JSON command to
-be on a single line, and it will automatically append the 0x03
-terminator when transmitting a request. (The Klipper API server does
-not have a newline requirement.)
+Этот инструмент может считывать серию команд JSON из stdin, отправлять их в Klipper и сообщать о результатах. Инструмент ожидает, что каждая команда JSON будет находиться в одной строке, и он автоматически добавит терминатор 0x03 при передаче запроса. (Сервер API Klipper не имеет требований к новой строке.)
 
 ## API Protocol
 
-The command protocol used on the communication socket is inspired by
-[json-rpc](https://www.jsonrpc.org/).
+Командный протокол, используемый в коммуникационном сокете, основан на [json-rpc](https://www.jsonrpc.org/).
 
-A request might look like:
+Запрос может выглядеть так:
 
 `{"id": 123, "method": "info", "params": {}}`
 
-and a response might look like:
+и ответ может выглядеть так:
 
 `{"id": 123, "result": {"state_message": "Printer is ready",
 "klipper_path": "/home/pi/klipper", "config_file":
@@ -54,18 +42,12 @@ and a response might look like:
 (v7l)", "state": "ready", "python_path":
 "/home/pi/klippy-env/bin/python", "log_file": "/tmp/klippy.log"}}`
 
-Each request must be a JSON dictionary. (This document uses the Python
-term "dictionary" to describe a "JSON object" - a mapping of key/value
-pairs contained within `{}`.)
+Каждый запрос должен быть словарем JSON. (В этом документе используется термин Python "dictionary" для описания "объекта JSON" - сопоставления пар ключ/значение, содержащихся в` {}`.)
 
-The request dictionary must contain a "method" parameter that is the
-string name of an available Klipper "endpoint".
+Словарь запросов должен содержать параметр "method", который является строковым именем доступной "endpoint" клиппера.
 
-The request dictionary may contain a "params" parameter which must be
-of a dictionary type. The "params" provide additional parameter
-information to the Klipper "endpoint" handling the request. Its
-content is specific to the "endpoint".
-
+Словарь запросов может содержать параметр "params", который должен иметь тип словаря. "params" предоставляют дополнительную информацию о параметрах "endpoint" Klipper, обрабатывающей запрос. Его содержимое специфично для "endpoint".
+### to translate
 The request dictionary may contain an "id" parameter which may be of
 any JSON type. If "id" is present then Klipper will respond to the
 request with a response message containing that "id". If "id" is
