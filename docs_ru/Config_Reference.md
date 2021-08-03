@@ -624,23 +624,15 @@ dir_pin:
 enable_pin:
 microsteps:
 rotation_distance:
-#   See the "stepper" section for a description of the above parameters.
+#   См.раздел "stepper" для описания вышеуказанных параметров.
 nozzle_diameter:
-#   Diameter of the nozzle orifice (in mm). This parameter must be
-#   provided.
+#   Диаметр отверстия сопла (в мм). Этот параметр должен быть указан.
 filament_diameter:
-#   The nominal diameter of the raw filament (in mm) as it enters the
-#   extruder. This parameter must be provided.
+#   Номинальный диаметр необработанной нити (в мм) при ее поступлении в экструдер. Этот параметр должен быть указан.
 #max_extrude_cross_section:
-#   Maximum area (in mm^2) of an extrusion cross section (eg,
-#   extrusion width multiplied by layer height). This setting prevents
-#   excessive amounts of extrusion during relatively small XY moves.
-#   If a move requests an extrusion rate that would exceed this value
-#   it will cause an error to be returned. The default is: 4.0 *
-#   nozzle_diameter^2
+#   Максимальная площадь (в мм^2) поперечного сечения экструзии (например, ширина экструзии, умноженная на высоту слоя). Эта настройка предотвращает чрезмерное выдавливание при относительно небольших перемещениях XY.   Если перемещение запрашивает скорость выдавливания, которая превышает это значение, это приведет к возвращению ошибки. Значение по умолчанию равно: 4.0 * nozzle_diameter^2
 #instantaneous_corner_velocity: 1.000
-#   The maximum instantaneous velocity change (in mm/s) of the
-#   extruder during the junction of two moves. The default is 1mm/s.
+#   Максимальное мгновенное изменение скорости (в мм/с) экструдера во время соединения двух ходов. Значение по умолчанию равно 1 мм/с.
 #max_extrude_only_distance: 50.0
 #   Maximum length (in mm of raw filament) that a retraction or
 #   extrude-only move may have. If a retraction or extrude-only move
