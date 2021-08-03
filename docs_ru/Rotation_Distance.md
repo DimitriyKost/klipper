@@ -1,46 +1,26 @@
-# Rotation distance
+# Расстояние вращения
 
-Stepper motor drivers on Klipper require a `rotation_distance`
-parameter in each
-[stepper config section](Config_Reference.md#stepper). The
-`rotation_distance` is the amount of distance that the axis moves with
-one full revolution of the stepper motor. This document describes how
-one can configure this value.
+Драйверы шаговых двигателей на Klipper требуют параметра `rotation_distance` в каждом [разделе конфигурации шагового двигателя](Config_Reference.md#stepper). `rotation_distance ` - это расстояние, на которое ось перемещается за один полный оборот шагового двигателя. В этом документе описано, как можно настроить это значение.
 
-## Obtaining rotation_distance from steps_per_mm (or step_distance)
+## Получение rotation_distance от steps_per_mm (или step_distance)
 
-The designers of your 3d printer originally calculated `steps_per_mm`
-from a rotation distance. If you know the steps_per_mm then it is
-possible to use this general formula to obtain that original rotation
-distance:
+Дизайнеры вашего 3d-принтера изначально рассчитали `шаг_пер_мм` с расстояния поворота. Если вы знаете steps_per_mm, то можно использовать эту общую формулу для получения исходного расстояния поворота:
 ```
 rotation_distance = <full_steps_per_rotation> * <microsteps> / <steps_per_mm>
 ```
 
-Or, if you have an older Klipper configuration and know the
-`step_distance` parameter you can use this formula:
+Или, если у вас более старая конфигурация Klipper и вы знаете параметр `step_distance`, вы можете использовать эту формулу:
 ```
 rotation_distance = <full_steps_per_rotation> * <microsteps> * <step_distance>
 ```
 
-The `<full_steps_per_rotation>` setting is determined from the type of
-stepper motor. Most stepper motors are "1.8 degree steppers" and
-therefore have 200 full steps per rotation (360 divided by 1.8 is
-200). Some stepper motors are "0.9 degree steppers" and thus have 400
-full steps per rotation. Other stepper motors are rare. If unsure, do
-not set full_steps_per_rotation in the config file and use 200 in the
-formula above.
+Параметр `<full_steps_per_rotation>` определяется типом шагового двигателя. Большинство шаговых двигателей являются `шаговыми двигателями на 1,8 градуса` и, следовательно, имеют 200 полных шагов на оборот (360, деленное на 1,8, равно 200). Некоторые шаговые двигатели являются `шаговыми двигателями на 0,9 градуса` и, таким образом, имеют 400 полных шагов на оборот. Другие шаговые двигатели встречаются редко. Если вы не уверены, не устанавливайте full_steps_per_rotation в файле конфигурации и используйте 200 в приведенной выше формуле.
 
-The `<microsteps>` setting is determined by the stepper motor driver.
-Most drivers use 16 microsteps. If unsure, set `microsteps: 16` in the
-config and use 16 in the formula above.
+Настройка `<микрошагов>` определяется драйвером шагового двигателя. Большинство водителей используют 16 микрошагов. Если вы не уверены, установите `микрошагов: 16` в конфигурации и используйте 16 в приведенной выше формуле.
 
-Almost all printers should have a whole number for `rotation_distance`
-on x, y, and z type axes. If the above formula results in a
-rotation_distance that is within .01 of a whole number then round the
-final value to that whole_number.
+Почти все принтеры должны иметь целое число для `rotation_distance` на осях типа x, y и z. Если приведенная выше формула приводит к значению rotation_distance, которое находится в пределах 0,01 от целого числа, затем округлите конечное значение до этого целого числа.
 
-## Calibrating rotation_distance on extruders
+## Калибровка сопротивления вращению на экструдерах
 
 On an extruder, the `rotation_distance` is the amount of distance the
 filament travels for one full rotation of the stepper motor. The best
