@@ -640,94 +640,77 @@ filament_diameter:
 #   Максимальное мгновенное изменение скорости (в мм/с) экструдера во время соединения 
 #   двух ходов. Значение по умолчанию равно 1 мм/с.
 #max_extrude_only_distance: 50.0
-#   Maximum length (in mm of raw filament) that a retraction or
-#   extrude-only move may have. If a retraction or extrude-only move
-#   requests a distance greater than this value it will cause an error
-#   to be returned. The default is 50mm.
+#   Максимальная длина (в мм необработанной нити), которую может иметь движение только 
+#   для втягивания или выдавливания. Если перемещение только для втягивания или 
+#   выдавливания запрашивает расстояние, превышающее это значение, это приведет 
+#   к возвращению ошибки. Значение по умолчанию-50 мм.
 #max_extrude_only_velocity:
 #max_extrude_only_accel:
-#   Maximum velocity (in mm/s) and acceleration (in mm/s^2) of the
-#   extruder motor for retractions and extrude-only moves. These
-#   settings do not have any impact on normal printing moves. If not
-#   specified then they are calculated to match the limit an XY
-#   printing move with a cross section of 4.0*nozzle_diameter^2 would
-#   have.
+#   Максимальная скорость (в мм/с) и ускорение (в мм/с^2) двигателя экструдера для 
+#   втягивания и перемещения только экструдера. Эти настройки не влияют на обычные 
+#   движения печати. Если не указано, то они рассчитываются в соответствии с пределом, 
+#   который будет иметь перемещение печати XY с поперечным сечением 4,0*nozzle_diameter^2.
 #pressure_advance: 0.0
-#   The amount of raw filament to push into the extruder during
-#   extruder acceleration. An equal amount of filament is retracted
-#   during deceleration. It is measured in millimeters per
-#   millimeter/second. The default is 0, which disables pressure
-#   advance.
+#   Количество необработанной нити, которую необходимо протолкнуть в экструдер во 
+#   время ускорения экструдера. Равное количество нити втягивается во время замедления. 
+#   Он измеряется в миллиметрах на миллиметр в секунду. Значение по умолчанию равно 0, 
+#   что отключает повышение давления.
 #pressure_advance_smooth_time: 0.040
-#   A time range (in seconds) to use when calculating the average
-#   extruder velocity for pressure advance. A larger value results in
-#   smoother extruder movements. This parameter may not exceed 200ms.
-#   This setting only applies if pressure_advance is non-zero. The
-#   default is 0.040 (40 milliseconds).
+#   Диапазон времени (в секундах), используемый при расчете средней скорости экструдера 
+#   для повышения давления. Большее значение приводит к более плавным движениям экструдера. 
+#   Этот параметр не может превышать 200 мс.   Этот параметр применяется только в том случае, 
+#   если значение pressure_advance не равно нулю. Значение по умолчанию равно 0,040 (40 миллисекунд).
 #
-# The remaining variables describe the extruder heater.
+# Остальные переменные описывают нагреватель экструдера.
 heater_pin:
-#   PWM output pin controlling the heater. This parameter must be
-#   provided.
+#   Выходной ШИМ-вывод, управляющий нагревателем. Этот параметр должен быть указан.
 #max_power: 1.0
-#   The maximum power (expressed as a value from 0.0 to 1.0) that the
-#   heater_pin may be set to. The value 1.0 allows the pin to be set
-#   fully enabled for extended periods, while a value of 0.5 would
-#   allow the pin to be enabled for no more than half the time. This
-#   setting may be used to limit the total power output (over extended
-#   periods) to the heater. The default is 1.0.
+#   Максимальная мощность (выраженная в значении от 0,0 до 1,0), на которую может быть 
+#   установлен heater_pin. Значение 1.0 позволяет установить пин-код полностью включенным
+#   в течение длительных периодов времени, в то время как значение 0,5 позволит включить
+#   пин-код не более чем на половину времени. Эта настройка может использоваться для 
+#   ограничения общей выходной мощности (в течение длительного времени) нагревателя. 
+#   Значение по умолчанию равно 1.0.
 sensor_type:
-#   Type of sensor - common thermistors are "EPCOS 100K B57560G104F",
-#   "ATC Semitec 104GT-2", "NTC 100K beta 3950", "Honeywell 100K
-#   135-104LAG-J01", "NTC 100K MGB18-104F39050L32", "SliceEngineering
-#   450", and "TDK NTCG104LH104JT1". See the "Temperature sensors"
-#   section for other sensors. This parameter must be provided.
+#  Тип датчиков - общие термисторы "EPCOS 100K B57560G104F", "ATC Semitec 104GT-2", 
+#   "NTC 100K beta 3950", "Honeywell 100K 135-104LAG-J01", "NTC 100K MGB18-104F39050L32", 
+#   "SliceEngineering 450" и "TDK NTCG104LH104JT1". Другие датчики см. в разделе "Датчики
+#   температуры". Этот параметр должен быть указан.
 sensor_pin:
-#   Analog input pin connected to the sensor. This parameter must be
-#   provided.
+#   Вывод аналогового входа, подключенный к датчику. Этот параметр должен быть указан.
 #pullup_resistor: 4700
-#   The resistance (in ohms) of the pullup attached to the thermistor.
-#   This parameter is only valid when the sensor is a thermistor. The
-#   default is 4700 ohms.
+#   Tсопротивление (в омах) тяги, присоединенной к термистору. Этот параметр действителен
+#   только в том случае, если датчик является термистором. Значение по умолчанию-4700 Ом.
 #smooth_time: 2.0
-#   A time value (in seconds) over which temperature measurements will
-#   be smoothed to reduce the impact of measurement noise. The default
-#   is 2 seconds.
+#  Значение времени (в секундах), в течение которого измерения температуры будут сглажены, 
+чтобы уменьшить влияние шума измерений. Значение по умолчанию равно 2 секундам.
 control:
-#   Control algorithm (either pid or watermark). This parameter must
-#   be provided.
+#   Алгоритм управления (либо pid, либо водяной знак). Этот параметр должен быть указан.
 pid_Kp:
-#   Kp is the "proportional" constant for the pid. This parameter must
-#   be provided for PID heaters.
+#   Kp - это "пропорциональная" константа для pid. Этот параметр должен быть предусмотрен для ПИД-нагревателей.
 pid_Ki:
-#   Ki is the "integral" constant for the pid. This parameter must be
-#   provided for PID heaters.
+#   Ki - "интегральная" константа для pid. Этот параметр должен быть предусмотрен для ПИД-нагревателей.
 pid_Kd:
-#   Kd is the "derivative" constant for the pid. This parameter must
-#   be provided for PID heaters.
+#   Kd - это "производная" константа для pid. Этот параметр должен быть предусмотрен для ПИД-нагревателей.
 #max_delta: 2.0
-#   On 'watermark' controlled heaters this is the number of degrees in
-#   Celsius above the target temperature before disabling the heater
-#   as well as the number of degrees below the target before
-#   re-enabling the heater. The default is 2 degrees Celsius.
+#   На нагревателях, управляемых "водяным знаком", это число градусов по Цельсию выше целевой температуры
+#   перед отключением нагревателя, а также число градусов ниже целевой температуры перед повторным 
+#   включением нагревателя. Значение по умолчанию равно 2 градусам Цельсия.
 #pwm_cycle_time: 0.100
-#   Time in seconds for each software PWM cycle of the heater. It is
-#   not recommended to set this unless there is an electrical
-#   requirement to switch the heater faster than 10 times a second.
-#   The default is 0.100 seconds.
+#   Время в секундах для каждого программного цикла ШИМ нагревателя. Не рекомендуется устанавливать
+#   этот параметр, если только не существует электрических требований для переключения нагревателя 
+#   быстрее, чем 10 раз в секунду.   Значение по умолчанию равно 0,100 секунды.
 #min_extrude_temp: 170
-#   The minimum temperature (in Celsius) at which extruder move
-#   commands may be issued. The default is 170 Celsius.
+#   Минимальная температура (в градусах Цельсия), при которой могут подаваться команды на перемещение 
+#   экструдера. Значение по умолчанию-170 градусов Цельсия.
 min_temp:
 max_temp:
-#   The maximum range of valid temperatures (in Celsius) that the
-#   heater must remain within. This controls a safety feature
-#   implemented in the micro-controller code - should the measured
-#   temperature ever fall outside this range then the micro-controller
-#   will go into a shutdown state. This check can help detect some
-#   heater and sensor hardware failures. Set this range just wide
-#   enough so that reasonable temperatures do not result in an error.
-#   These parameters must be provided.
+#   Максимальный диапазон допустимых температур (в градусах Цельсия), в котором должен находиться 
+#   нагреватель. Это управляет функцией безопасности, реализованной в коде микроконтроллера - если 
+#   измеряемая температура когда-либо выйдет за пределы этого диапазона, микроконтроллер перейдет 
+#   в состояние выключения. Эта проверка может помочь обнаружить некоторые неисправности оборудования
+#   нагревателя и датчика. Установите этот диапазон достаточно широким, чтобы разумные температуры не 
+#   приводили к ошибке. Эти параметры должны быть указаны.
 ```
 
 ## [heater_bed]
