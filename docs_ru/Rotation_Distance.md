@@ -22,27 +22,13 @@ rotation_distance = <full_steps_per_rotation> * <microsteps> * <step_distance>
 
 ## Калибровка сопротивления вращению на экструдерах
 
-On an extruder, the `rotation_distance` is the amount of distance the
-filament travels for one full rotation of the stepper motor. The best
-way to get an accurate value for this setting is to use a "measure and
-trim" procedure.
+На экструдере `расстояние вращения` - это расстояние, на которое проходит нить накала за один полный оборот шагового двигателя. Лучший способ получить точное значение для этого параметра-использовать процедуру `измерение и обрезка`.
 
-First start with an initial guess for the rotation distance. This may
-be obtained from
-[steps_per_mm](#obtaining-rotation_distance-from-steps_per_mm-or-step_distance)
-or by [inspecting the hardware](#extruder).
-
-Then use the following procedure to "measure and trim":
-1. Make sure the extruder has filament in it, the hotend is heated to
-   an appropriate temperature, and the printer is ready to extrude.
-2. Use a marker to place a mark on the filament around 70mm from the
-   intake of the extruder body. Then use a digital calipers to measure
-   the actual distance of that mark as precisely as one can. Note this
-   as `<initial_mark_distance>`.
-3. Extrude 50mm of filament with the following command sequence: `G91`
-   followed by `G1 E50 F60`. Note 50mm as
-   `<requested_extrude_distance>`. Wait for the extruder to finish the
-   move (it will take about 50 seconds).
+Сначала начните с первоначального предположения о расстоянии поворота. Это может быть получено из [steps_per_mm](#obtaining-rotation_distance-from-steps_per_mm-or-step_distance) или путем [проверки оборудования](#extruder).
+Затем используйте следующую процедуру для `измерения и обрезки`:
+1. Убедитесь, что в экструдере есть нить накала, нагреватель нагрет до соответствующей температуры и принтер готов к выдавливанию.
+2. С помощью маркера нанесите метку на нить накала примерно в 70 мм от впускного отверстия корпуса экструдера. Затем используйте цифровой штангенциркуль, чтобы как можно точнее измерить фактическое расстояние до этой отметки. Обратите внимание на это как `<initial_mark_distance>`.
+3. Вытяните 50 мм нити накала со следующей последовательностью команд: `G91`, за которым следует `G1 E50 F60`. Обратите внимание на 50 мм как `<requested_extrude_distance>`. Подождите, пока экструдер завершит перемещение (это займет около 50 секунд).
 4. Use the digital calipers to measure the new distance between the
    extruder body and the mark on the filament. Note this as
    `<subsequent_mark_distance>`. Then calculate:
