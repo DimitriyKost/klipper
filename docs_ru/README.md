@@ -1,6 +1,6 @@
 # Порядок настройки стола, z-ofset
 ## Калибровка стола
-### Регулировка винтов для выравнивания кровати с помощью датчика BL Touch
+### Регулировка винтов для выравнивания стола с помощью датчика BL Touch
 
 см. [Manual_Level.md](https://github.com/DimitriyKost/klipper/blob/master/docs/Manual_Level.md)
 
